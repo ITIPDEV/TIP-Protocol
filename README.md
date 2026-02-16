@@ -18,7 +18,7 @@
 | Network | Contract Address | Status | Explorer |
 | :--- | :--- | :--- | :--- |
 | **BSC Mainnet** | `Pending Deployment...` | Pending | [View on BscScan](#) |
-| **BSC Testnet** | `Pending Deployment...` | Pending | [View on BscScan](#) |
+| **BSC Testnet** | `0x9FE10e09539b533BA23e59AaF9Fddc65268e6be2` | Pending | [View on BscScan](https://testnet.bscscan.com/address/0x9fe10e09539b533ba23e59aaf9fddc65268e6be2) |
 
 ## Integration (For Developers)
 
