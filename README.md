@@ -1,68 +1,95 @@
-# TIP-1 Protocol
+# TIP Protocol (Task Interoperability Protocol)
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Network](https://img.shields.io/badge/Network-BSC_Mainnet-gold)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Solidity](https://img.shields.io/badge/Solidity-0.8.20-lightgrey)
 
-**The Task Interaction Protocol (TIP)** is a minimalist, decentralized state machine designed to standardize the lifecycle of on-chain tasks. It serves as the "TCP/IP" for task coordination in the Web3 era—neutral, immutable, and permissionless.
+**TIP Protocol** is a standard decentralized state machine for task lifecycle management on the BNB Smart Chain. It provides a universal interface (`ITIP1`) for creating, tracking, and updating task states on-chain, ensuring interoperability between different dApps and worker platforms.
 
 ---
 
-## Core Philosophy
+## 🚀 Deployment Addresses
 
-* **Decentralized ID**: TIP-1 does not generate IDs. Users generate IDs off-chain (e.g., via Keccak256 hash or UUID). The protocol only validates uniqueness.
-* **Immutable Logic**: Enforces 10 strict physical transition paths based on bitwise logic. No admin keys, no upgrades, no pauses.
-* **Gas Optimized**: Utilizes bitwise operations and single-slot storage packing for extreme efficiency.
-* **Permissionless**: Anyone can register a task. Anyone can build a UI or AI Agent on top of it.
-
-## Contract Addresses
-
-| Network | Contract Address | Status | Explorer |
+| Network | Type | Address | Description |
 | :--- | :--- | :--- | :--- |
-| **BSC Mainnet** | `0x9FE10e09539b533BA23e59AaF9Fddc65268e6be2` | Finish | [View on BscScan](https://bscscan.com/address/0x9fe10e09539b533ba23e59aaf9fddc65268e6be2) |
-| **BSC Testnet** | `0xde38D7191bbAcC4Fcd1c4e10f8b941b3799eBf37` | Finish | [View on BscScan](https://testnet.bscscan.com/address/0xde38d7191bbacc4fcd1c4e10f8b941b3799ebf37) |
+| **BSC Mainnet** | **Official Production** | **`0x9FE10e09539b533BA23e59AaF9Fddc65268e6be2`** | **The Final V1.0 Protocol.** Validated, audited, and immutable. Use this for production integration. |
+| **BSC Testnet** | **Stable Mirror** | `0xde38D7191bbAcC4Fcd1c4e10f8b941b3799eBf37` | **Mainnet-Aligned.** Deployed with the exact same logic and bytecode as Mainnet. Use this for standard integration testing. |
+| **BSC Testnet** | **Test Logic** | `0x9FE10e09539b533BA23e59AaF9Fddc65268e6be2` | **Experimental/Dev Logic.** Shares the same address as Mainnet but contains experimental logic features. Used for internal logic verification. |
 
-## Integration (For Developers)
+> **Note on Address Collision:** The Mainnet address and the Testnet "Test Logic" address are identical (`0x9FE...6be2`) due to the deployment nonce sequence. However, they run **different logic versions**. Developers should choose the Testnet address based on their specific testing needs.
 
-To integrate TIP-1 into your dApp, AI Agent, or DAO, simply use the `ITIP1` interface. You do not need to import the full implementation.
+---
+
+## 🛠 Integration Guide (ITIP1 Standard)
+
+Any contract or dApp can interact with the protocol using the `ITIP1` interface.
+
+### 1. The Interface (`ITIP1`)
+
+Copy this interface into your project to interact with the TIP Protocol:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-/// @title TIP-1 Protocol Interface
 interface ITIP1 {
-    // Event emitted when a task state changes
+    /**
+     * @dev Emitted when a task's state changes.
+     * @param id The unique task ID.
+     * @param oldState The previous state.
+     * @param newState The new state after update.
+     */
     event Updated(uint256 indexed id, uint8 indexed oldState, uint8 indexed newState);
 
     /**
-     * @notice Updates the state of a task.
-     * @dev Only the controller of the task can call this function.
-     * @param id The unique identifier of the task.
-     * @param newState The target state to transition to.
+     * @dev Updates the state of a task. 
+     * Can only be called by the task's controller.
+     * @param id The unique task ID.
+     * @param newState The target state (0-6).
      */
     function update(uint256 id, uint8 newState) external;
 
     /**
-     * @notice Reads the current status of a task.
-     * @param id The unique identifier of the task.
-     * @return controller The address that owns/controls the task.
-     * @return state The current state code (0-6).
+     * @dev Fetches task details.
+     * @param id The unique task ID.
+     * @return controller The address with authority to update the task.
+     * @return state The current state of the task.
      */
     function fetch(uint256 id) external view returns (address controller, uint8 state);
 }
 
 ```
 
-## State Machine
+---
 
-TIP-1 strictly enforces the following lifecycle transitions. Any other transition attempt will revert.
+### 2. State Machine Reference
 
-1.  **Open (0)** -> Taken (1), Cancelled (5)
-2.  **Taken (1)** -> Submitted (2), Disputed (4), Failed (6)
-3.  **Submitted (2)** -> Completed (3), Taken (1), Disputed (4)
-4.  **Disputed (4)** -> Completed (3), Failed (6)
+The protocol enforces a strict state transition flow. Inputs for `newState` must correspond to:
 
-> *Note: States 3 (Completed), 5 (Cancelled), and 6 (Failed) are **Terminal States**. Once reached, the task is locked forever.*
+| ID | State Name | Description |
+| :--- | :--- | :--- |
+| **0** | `Open` | Initial state. Task is created and waiting for a worker. |
+| **1** | `Taken` | Accepted by a worker. |
+| **2** | `Submitted` | Work has been uploaded/delivered. |
+| **3** | `Completed` | Final success state (Terminal). |
+| **4** | `Disputed` | Conflict resolution in progress. |
+| **5** | `Cancelled` | Task revoked by creator (Terminal). |
+| **6** | `Failed` | Unsuccessful attempt (Terminal). |
 
-## License
+---
+
+## 🔒 Security Features (Mainnet & Stable)
+
+The production contract (`0x9FE...` on Mainnet) includes the following security enhancements:
+
+* **Existence Check**: Prevents interaction with non-existent task IDs (`NotFound` error).
+* **Access Control**: Only the registered `controller` can update a task (`Auth` error).
+* **Input Validation**: Strict bounds checking on state inputs (`> 6` reverts).
+* **Transition Logic**: Validates state moves against the allowed transition matrix (e.g., cannot move from `Completed` back to `Open`). Returns `InvalidTransition(from, to)` on failure.
+
+---
+
+## 📄 License
 
 This project is licensed under the **MIT License**.
