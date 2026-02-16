@@ -16,7 +16,7 @@ interface ITIP1 {
 }
 
 /**
- * @title TIP1 v2 (Standard Implementation)
+ * @title TIP1 v2.1 (Standard Implementation)
  * @notice The standard, developer-friendly implementation of TIP-1.
  */
 contract TIP1v2 is ITIP1 {
