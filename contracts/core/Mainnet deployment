@@ -10,7 +10,16 @@ interface ITIP1 {
 }
 
 contract TIP_Protocol is ITIP1 {
-    enum State { Open, Taken, Submitted, Completed, Disputed, Cancelled, Failed }
+    // Standard State Definitions for ITIP1
+    enum State { 
+        Open,       // 0: Initialized
+        Taken,      // 1: Accepted by worker
+        Submitted,  // 2: Work uploaded
+        Completed,  // 3: Finalized (Terminal)
+        Disputed,   // 4: Conflict resolution
+        Cancelled,  // 5: Revoked (Terminal)
+        Failed      // 6: Unsuccessful (Terminal)
+    }
 
     uint256 private constant _S0 = 0x22; 
     uint256 private constant _S1 = 0x54; 
