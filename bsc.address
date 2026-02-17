@@ -1,0 +1,26 @@
+# ITIP Protocol - Deployment Registry
+# BNB Chain Hackathon Submission
+
+# ====================================================
+# 🟢 TESTNET
+# Network: BNB Smart Chain Testnet (ChainID: 97)
+# RPC: https://data-seed-prebsc-1-s1.binance.org:8545/
+# ====================================================
+
+# Core Protocol Implementation (The Logic)
+TIP_Protocol_Testnet=0xde38D7191bbAcC4Fcd1c4e10f8b941b3799eBf37
+# Explorer Link: https://testnet.bscscan.com/address/0xde38D7191bbAcC4Fcd1c4e10f8b941b3799eBf37
+
+# ====================================================
+# 🔴 MAINNET 
+# Network: BNB Smart Chain Mainnet (ChainID: 56)
+# Note: The AI Agent is currently active on Mainnet.
+# ====================================================
+
+# Core Protocol Implementation
+TIP_Protocol_Mainnet=0x9FE10e09539b533BA23e59AaF9Fddc65268e6be2
+# Explorer Link: https://bscscan.com/address/0x9FE10e09539b533BA23e59AaF9Fddc65268e6be2
+
+# Proof of Work
+Agent_Live_Wallet=0xa5173b193d1c5a8ff5884561aad4e2b4fb02a14a
+# Explorer Link: https://bscscan.com/address/0xa5173b193d1c5a8ff5884561aad4e2b4fb02a14a
