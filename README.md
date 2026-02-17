@@ -79,6 +79,20 @@ The protocol enforces a strict state transition flow. Inputs for `newState` must
 
 ---
 
+### 3. Protocol Extensibility & Turing Completeness
+
+The `TIP_Protocol` contract deployed on Mainnet serves as a **canonical reference implementation** of the ITIP standard. It demonstrates a linear, 7-state lifecycle optimized for general-purpose task management.
+
+However, the ITIP interface (`ITIP1`) is designed to be **agnostic to the underlying state logic**. Since the Ethereum Virtual Machine (EVM) is Turing-complete, developers are not limited to the standard state flow.
+
+* **Arbitrary State Definitions**: You can define custom state machines with any number of states (e.g., `Verified`, `Arbitrating`, `Timeout`).
+* **Complex Transition Logic**: Implement conditional branching, multi-signature approvals, or time-locked transitions within the `update` function.
+* **Interoperability**: As long as your contract implements the `ITIP1` interface (emitting standard events and allowing state fetches), it remains fully compatible with the TIP ecosystem indexers and frontends.
+
+> **Note:** While `TIP_Protocol` enforces a strict standard flow for consistency, the protocol itself supports infinite extensibility for specialized use cases.
+
+---
+
 ## 🔒 Security Features (Mainnet & Stable)
 
 The production contract (`0x9FE...` on Mainnet) includes the following security enhancements:
