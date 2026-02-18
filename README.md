@@ -80,7 +80,21 @@ interface ITIP1 {
 
 ### 2. State Machine Reference
 
-The protocol enforces a strict state transition flow. Inputs for `newState` must correspond to:
+The protocol enforces a strict state transition flow. This matrix defines the allowed moves between states.
+
+| Current \ Next | 0: Open | 1: Taken | 2: Submitted | 3: Completed | 4: Disputed | 5: Cancelled | 6: Failed |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **0: Open** | - | ✅ | - | - | - | ✅ | - |
+| **1: Taken** | - | - | ✅ | - | ✅ | ✅ | - |
+| **2: Submitted** | - | - | - | ✅ | ✅ | - | - |
+| **3: Completed** | - | - | - | **TERM** | - | - | - |
+| **4: Disputed** | - | - | ✅ | ✅ | - | - | ✅ |
+| **5: Cancelled** | - | - | - | - | - | **TERM** | - |
+| **6: Failed** | - | - | - | - | - | - | **TERM** |
+
+> **Legend:** **✅** = Allowed; **-** = Forbidden (triggers `InvalidTransition`); **TERM** = Terminal State.
+
+State Definitions:
 
 | ID | State Name | Description |
 | :--- | :--- | :--- |
