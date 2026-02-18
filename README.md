@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
 ![Solidity](https://img.shields.io/badge/Solidity-0.8.20-lightgrey)
 
-**TIP Protocol** is a standard decentralized state machine for task lifecycle management on the BNB Smart Chain. It provides a universal interface (`ITIP1`) for creating, tracking, and updating task states on-chain, ensuring interoperability between different dApps and worker platforms.
+TIP Protocol is the decentralized state layer for the AI Agent economy on BNB Chain. By standardizing task lifecycles via the universal ITIP1 interface, it enables autonomous agents to verify work and settle payments across fragmented dApps without custom integration.
 
 ---
 
