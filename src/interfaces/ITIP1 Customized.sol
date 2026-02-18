@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+// This version is customized for specific calls. DO NOT use for new contract versions.
 interface ITIP1 {
     event Created(uint256 indexed id, address indexed controller);
     
