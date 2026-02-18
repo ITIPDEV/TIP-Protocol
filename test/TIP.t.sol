@@ -25,7 +25,8 @@ contract TIPTest is Test {
 
         tip.update(taskId, 1);
         
-        (_, s) = tip.fetch(taskId);
+        // Corrected: use empty space to ignore the first return value
+        (, s) = tip.fetch(taskId);
         assertEq(s, 1);
 
         vm.stopPrank();
