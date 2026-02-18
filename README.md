@@ -10,11 +10,16 @@
 
 ---
 
-## 📦 Installation
+## ⚡ Quick Demonstration
+
+Experience the protocol in 60 seconds. This command installs dependencies and runs a full deployment/workflow simulation in a local environment:
 
 ```bash
+# 1. Install dependencies
 forge install foundry-rs/forge-std
-forge test
+
+# 2. Run the Magic Button Demo
+forge script script/Deploy.s.sol
 ```
 
 ---
