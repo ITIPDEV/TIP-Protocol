@@ -9,6 +9,15 @@
 
 ---
 
+## 📦 Installation
+
+To install dependencies (standard library):
+
+```bash
+forge install foundry-rs/forge-std --no-commit
+
+---
+
 ## 🚀 Deployment Addresses
 
 | Network | Type | Address | Description |
