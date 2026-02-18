@@ -1,5 +1,6 @@
 # TIP Protocol (Task Interoperability Protocol)
 
+![Tests](https://github.com/ITIPDEV/TIP-Protocol/actions/workflows/test.yml/badge.svg)
 ![Network](https://img.shields.io/badge/Network-BSC_Mainnet-gold)
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
