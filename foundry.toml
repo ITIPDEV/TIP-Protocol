@@ -6,6 +6,11 @@ solc = "0.8.20"
 evm_version = "shanghai"
 optimizer = true
 optimizer_runs = 200
+# This fixes the sub-folder import issue by redirecting the path
+remappings = [
+    "forge-std/=lib/forge-std/src/",
+    "src/contracts/interfaces/=src/interfaces/"
+]
 fs_permissions = [{ access = "read", path = "./" }]
 
 [rpc_endpoints]
