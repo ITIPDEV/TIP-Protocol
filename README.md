@@ -12,11 +12,9 @@
 
 ## 📦 Installation
 
-To install dependencies (standard library):
-
 ```bash
-forge install foundry-rs/forge-std --no-commit
-
+forge install foundry-rs/forge-std
+forge test
 ```
 
 ---
