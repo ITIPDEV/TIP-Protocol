@@ -15,11 +15,17 @@ TIP Protocol is the decentralized state layer for the AI Agent economy on BNB Ch
 Experience the protocol in 60 seconds. This command installs dependencies and runs a full deployment/workflow simulation in a local environment:
 
 ```bash
-# 1. Install dependencies
-forge install foundry-rs/forge-std
 
-# 2. Run the Magic Button Demo
+# 1. Clone the repository
+git clone https://github.com/ITIPDEV/TIP-Protocol.git
+cd TIP-Protocol
+
+# 2. Install dependencies (Foundry)
+forge install
+
+# 3. Run the Magic Button Demo (No gas needed)
 forge script script/Deploy.s.sol
+
 ```
 
 ---
@@ -58,7 +64,7 @@ interface ITIP1 {
     event Updated(uint256 indexed id, uint8 indexed oldState, uint8 indexed newState);
 
     /**
-     * @dev Updates the state of a task. 
+     * @dev Updates the state of a task.
      * Can only be called by the task's controller.
      * @param id The unique task ID.
      * @param newState The target state (0-6).
@@ -73,7 +79,6 @@ interface ITIP1 {
      */
     function fetch(uint256 id) external view returns (address controller, uint8 state);
 }
-
 ```
 
 ---
