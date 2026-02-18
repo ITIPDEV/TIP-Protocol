@@ -2,7 +2,7 @@
 
 
 
-> **For Hackathon Participants & Judges:** This guide provides the fastest method to deploy a fresh instance of the `TIP_Protocol` (TIP1) to any EVM-compatible testnet (Sepolia, Base Sepolia, etc.) using Remix IDE.
+> For Hackathon Participants & Judges: This guide provides the fastest method to deploy a fresh instance of the TIP_Protocol (TIP1) to any EVM-compatible testnet (Sepolia, Base Sepolia, etc.) or local test environment using Remix IDE and scripts.
 
 
 
@@ -257,3 +257,31 @@ Once deployed, check the output console at the bottom of Remix.
 
 
 ---
+
+
+
+⚡ Method 2: The "Magic Button" Demo (Foundry)
+
+
+
+If you have Foundry installed, you can simulate the entire protocol lifecycle (Deployment + Registration + State Transition) in 60 seconds without spending real Gas.
+
+
+
+# 1. Install dependencies
+forge install foundry-rs/forge-std
+
+# 2. Run the automated simulation script
+forge script script/Deploy.s.sol
+
+
+What happens? Foundry will spin up a local EVM, deploy the TIP Protocol, register a demo task, and execute a state update. You will see the success logs directly in your terminal.
+
+
+
+---
+
+
+
+Success Check
+Whether you use Method 1 or Method 2, the TIP Protocol will enforce the strict 7-state transition logic, ensuring high-integrity task management on-chain.
