@@ -266,14 +266,16 @@ Once deployed, check the output console at the bottom of Remix.
 
 If you have Foundry installed, you can simulate the entire protocol lifecycle (Deployment + Registration + State Transition) in 60 seconds without spending real Gas.
 
+# 1. Clone the repository
+git clone https://github.com/ITIPDEV/TIP-Protocol.git
 
+cd TIP-Protocol
 
-# 1. Install dependencies
-forge install foundry-rs/forge-std
+# 2. Install dependencies (Foundry)
+forge install
 
-# 2. Run the automated simulation script
+# 3. Run the Magic Button Demo (No gas needed)
 forge script script/Deploy.s.sol
-
 
 What happens? Foundry will spin up a local EVM, deploy the TIP Protocol, register a demo task, and execute a state update. You will see the success logs directly in your terminal.
 
