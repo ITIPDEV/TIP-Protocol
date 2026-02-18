@@ -45,7 +45,7 @@ Please refer to the table below to select the appropriate interface for your dev
 | Feature | ITIP1 (Standard) | ITIP1 Customized (Full) |
 | :--- | :--- | :--- |
 | **Primary Audience** | **Protocol Creators** & **Generic Integrators** | **TIP1 Business Developers** |
-| **File Path** | `src/interfaces/ITIP1.sol` | `src/interfaces/ITIP1 Customized.sol` |
+| **File Path** | `src/interfaces/ITIP1.sol` | `src/interfaces/ITIP1_Customized.sol` |
 | **Contains `register`** | No | **Yes** |
 | **Contains `Created` Event** | No | **Yes** |
 | **Capability** | Read & Update Only | **Create**, Read & Update |
